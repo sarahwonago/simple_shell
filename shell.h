@@ -14,5 +14,6 @@
 
 void _printf(const char *str)
 void _prompt(void);
+void exec_command(const char *c);
 
 #endif /* SHELL_H */
