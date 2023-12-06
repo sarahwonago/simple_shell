@@ -12,5 +12,7 @@
 #include <fcntl.h>
 #include <errno.h>
 
+void _printf(const char *str)
+void _prompt(void);
 
 #endif /* SHELL_H */
