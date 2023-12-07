@@ -33,9 +33,7 @@ void exec_command(const char *command)
             args[count++] = token;
             token = strtok(NULL, " ");
         }
-        args[count] = NULL;
-
-        printf("Executing command: %s\n", args[0]); 
+        args[count] = NULL; 
         
         if (strcmp(args[0], "exit") == 0)
         {
