@@ -28,4 +28,4 @@ The project is organized into several files, each serving a specific purpose:
 To compile the shell, use the following command:
 
 ```bash
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o simple_shell
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
