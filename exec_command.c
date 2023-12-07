@@ -23,8 +23,19 @@ void exec_command(const char *c)
   }
   else if(child_pid == 0)
   {
-    execlp(c, c, (char *)NULL);
-    perror("execlp");
+    char *args[128];
+    int count = 0;
+
+    char *token = strtok((char *)c, " ");
+    while(token != NULL)
+    {
+      args[count++] = token;
+      token = strtok(NULL, " ");
+    }
+    args[count] = NULL;
+
+    execvp(args[0], args);
+    _printf("Error executing command.\n");
     exit(EXIT_FAILURE);
   }
   else
