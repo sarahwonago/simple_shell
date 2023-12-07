@@ -16,16 +16,19 @@ void exec_command(const char *c)
 {
   pid_t child_pid = fork();
 
-  if(child_pid == -1)
+  if (child_pid == -1)
   {
     perror("fork");
     exit(EXIT_FAILURE);
   }
-  else if(child_pid == 0)
+  else if (child_pid == 0)
   {
-    execlp(c, c, (char *)NULL);
-    perror("execlp");
-    exit(EXIT_FAILURE);
+    char *args[] = {(char *)c, NULL};
+    if (execve(c, args, NULL) == -1)
+    {
+      perror("execve");
+      exit(EXIT_FAILURE);
+    }
   }
   else
   {
