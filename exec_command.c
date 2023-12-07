@@ -23,12 +23,23 @@ void exec_command(const char *c)
   }
   else if (child_pid == 0)
   {
-    char *args[] = {(char *)c, NULL};
+    char **args = malloc(sizeof(char *) * 2);
+    if (args == NULL)
+    {
+      perror("malloc");
+      exit(EXIT_FAILURE);
+    }
+
+    args[0] = (char *)c;
+    args[1] = NULL;
+
     if (execve(c, args, NULL) == -1)
     {
       perror("execve");
       exit(EXIT_FAILURE);
     }
+
+    free(args);
   }
   else
   {
