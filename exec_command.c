@@ -35,6 +35,8 @@ void exec_command(const char *command)
         }
         args[count] = NULL;
 
+        printf("Executing command: %s\n", args[0]); 
+        
         if (strcmp(args[0], "exit") == 0)
         {
             printf("Exiting shell...\n");
