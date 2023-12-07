@@ -35,6 +35,12 @@ void exec_command(const char *command)
         }
         args[count] = NULL;
 
+        if (strcmp(args[0], "exit") == 0)
+        {
+            _printf("Exiting shell...\n");
+            exit(EXIT_SUCCESS);
+        }
+
         if (access(args[0], F_OK) == -1)
         {
             char *path = getenv("PATH");
