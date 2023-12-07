@@ -37,7 +37,7 @@ void exec_command(const char *command)
 
         if (strcmp(args[0], "exit") == 0)
         {
-            _printf("Exiting shell...\n");
+            printf("Exiting shell...\n");
             exit(EXIT_SUCCESS);
         }
 
