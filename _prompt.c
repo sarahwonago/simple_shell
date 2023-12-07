@@ -11,5 +11,5 @@
 
 void _prompt(void)
 {
-  _printf("_hsh$");
+  printf("_hsh$");
 }
