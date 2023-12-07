@@ -12,7 +12,7 @@
 #include <fcntl.h>
 #include <errno.h>
 
-void _printf(const char *str)
+void _printf(const char *str);
 void _prompt(void);
 void exec_command(const char *c);
 void read_command(char *c, size_t size);
