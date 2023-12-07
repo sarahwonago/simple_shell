@@ -19,6 +19,12 @@ int main(void)
   {
     _prompt();
     read_command(c, sizeof(c));
+    if (strcmp(c, "env\n") == 0)
+    {
+      env_builtin();
+      continue;
+    }
+
     exec_command(c);
   }
 
