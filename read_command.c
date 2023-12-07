@@ -21,12 +21,12 @@ void read_command(char *c, size_t size)
   {
     if(feof(stdin))
     {
-      _printf("\n");
+      printf("\n");
       exit(EXIT_SUCCESS);
     }
     else
     {
-      _printf("Error reading user input.\n");
+      printf("Error reading user input.\n");
       exit(EXIT_FAILURE);
     }
   }
