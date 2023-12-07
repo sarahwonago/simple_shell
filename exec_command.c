@@ -16,33 +16,19 @@ void exec_command(const char *c)
 {
   pid_t child_pid = fork();
 
-  if (child_pid == -1)
+  if(child_pid == -1)
   {
     perror("fork");
     exit(EXIT_FAILURE);
   }
-  else if (child_pid == 0)
+  else if(child_pid == 0)
   {
-    char **args = malloc(sizeof(char *) * 2);
-    if (args == NULL)
-    {
-      perror("malloc");
-      exit(EXIT_FAILURE);
-    }
-
-    args[0] = (char *)c;
-    args[1] = NULL;
-
-    if (execve(c, args, NULL) == -1)
-    {
-      perror("execve");
-      exit(EXIT_FAILURE);
-    }
-
-    free(args);
+    execlp(c, c, (char *)NULL);
+    perror("execlp");
+    exit(EXIT_FAILURE);
   }
   else
   {
     wait(NULL);
   }
-}
+} 
