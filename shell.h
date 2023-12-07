@@ -18,5 +18,6 @@ void _printf(const char *str);
 void _prompt(void);
 void exec_command(const char *command);
 void read_command(char *c, size_t size);
+void env_builtin(void);
 
 #endif /* SHELL_H */
