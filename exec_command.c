@@ -52,7 +52,7 @@ void exec_command(const char *command)
                 dir = strtok(NULL, ":");
             }
 
-            _printf("Command not found: %s\n", args[0]);
+            printf("Command not found: %s\n", args[0]);
             free(path_copy);
             exit(EXIT_FAILURE);
         }
