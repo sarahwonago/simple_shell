@@ -10,7 +10,7 @@ This is a simple UNIX command-line interpreter (shell) implemented in C, adherin
 
 ## Introduction
 
-This project aims to create a basic shell that follows the specified guidelines and requirements. The shell supports executing simple commands, handling PATH, implementing the exit and env built-ins, and displaying the prompt.
+This project aims to create a basic shell that follows the specified guidelines and requirements. The shell supports executing simple commands, handling PATH, implementing the exit and env built-ins,and displaying the prompt.
 
 ## File Structure
 
