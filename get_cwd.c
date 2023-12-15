@@ -8,7 +8,6 @@
 int get_cwd(void)
 {
     char buf[1024];
-    char *cwd;
 
     if (getcwd(buf, sizeof(buf)) == NULL)
     {
