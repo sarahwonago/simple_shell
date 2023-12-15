@@ -6,6 +6,7 @@
  *
  * Return: Pointer to the node that contains the PATH, or NULL on failure.
  */
+
 char *find_path(char **env)
 {
     char *path = "PATH=";
