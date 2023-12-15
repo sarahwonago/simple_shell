@@ -63,6 +63,7 @@ void new_exit(vars_t *vars);
 void _env(vars_t *vars);
 void new_setenv(vars_t *vars);
 void new_unsetenv(vars_t *vars);
+int _setenv(const char *name, const char *value, int overwrite);
 void create_key(vars_t *vars);
 char **find_key(char **env, char *key);
 char *add_value(char *key, char *value);
