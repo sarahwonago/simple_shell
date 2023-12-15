@@ -1,32 +1,64 @@
 #include "shell.h"
+#include "globals.h"
+
+/* Global variable for ^C handling */
+unsigned int sig_flag = 0;
 
 /**
- * main - Entry point of the shell program
+ * main - Shell program entry point.
+ * @argc: Number of arguments passed to main.
+ * @argv: Array of arguments passed to main.
+ * @environment: Array of environment variables.
  *
- * Description:
- * This function serves as the main entry point for a simple shell program.
- * It enters into an infinite loop, prompting the user, reading their input,
- * and executing the entered command.
- *
- * Return: Always 0 (Success)
+ * Return: 0 or exit status.
  */
-
-int main(void)
+int main(int argc __attribute__((unused)), char **argv, char **environment)
 {
-  char c[150];
+    size_t len_buffer = 0;
+    unsigned int is_pipe = 0, i;
+    vars_t vars = {NULL, NULL, NULL, 0, NULL, 0, NULL};
 
-  while(1)
-  {
-    _prompt();
-    read_command(c, sizeof(c));
-    if (strcmp(c, "env\n") == 0)
+    vars.argv = argv;
+    vars.env = make_env(environment);
+    signal(SIGINT, sig_handler);
+
+    if (!isatty(STDIN_FILENO))
+        is_pipe = 1;
+
+    if (is_pipe == 0)
+        _puts("$ ");
+
+    while (getline(&(vars.buffer), &len_buffer, stdin) != -1)
     {
-      env_builtin();
-      continue;
+        vars.count++;
+        vars.commands = tokenize(vars.buffer, ";");
+
+        for (i = 0; vars.commands && vars.commands[i] != NULL; i++)
+        {
+            vars.av = tokenize(vars.commands[i], "\n \t\r");
+
+            if (vars.av && vars.av[0])
+            {
+                if (check_for_builtins(&vars) == NULL)
+                    check_for_path(&vars);
+                
+                free(vars.av);
+            }
+        }
+
+        free(vars.buffer);
+        free(vars.commands);
+
+        if (is_pipe == 0)
+            _puts("$ ");
+
+        vars.buffer = NULL;
     }
 
-    exec_command(c);
-  }
+    if (is_pipe == 0)
+        _puts("\n");
 
-  return(0);
+    free_env(vars.env);
+    free(vars.buffer);
+    exit(vars.status);
 }
