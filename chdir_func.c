@@ -1,6 +1,4 @@
 #include "shell.h"
-#include <stdio.h>
-#include <unistd.h>
 
 /**
  * chdir_func - Changes working directory and prints it.
